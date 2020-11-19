@@ -1,9 +1,12 @@
+import * as COLORS from "./colors";
+
 export const lightTheme = {
-  body: "#FFF",
-  text: "#111517",
+  body: COLORS.VERY_LIGHT_GRAY_BG,
+  text: COLORS.DARK_BLUE_TEXT,
 };
 
 export const darkTheme = {
-  body: "#202C37",
-  text: "#FFF",
+  body: COLORS.DARK_BLUE_BG,
+  elementBackgroundColor: COLORS.DARK_BLUE,
+  text: COLORS.WHITE,
 };
