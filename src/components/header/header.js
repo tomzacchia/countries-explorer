@@ -1,16 +1,18 @@
 import React from "react";
 import * as Styles from "./header.styles";
-import { Button } from "../../styles/buttons";
+import { ButtonNoShadow } from "../../styles/buttons";
 
-const Header = ({ toggleTheme }) => {
+const Header = ({ toggleTheme, theme }) => {
+  const iconClassname = theme === "light" ? "far fa-moon" : "fas fa-moon";
+
   return (
     <Styles.HeaderContainer>
-      <h3> Where in the world? </h3>
+      <Styles.HeaderTitle> Where in the world? </Styles.HeaderTitle>
 
-      <Button onClick={toggleTheme}>
-        <i></i>
+      <ButtonNoShadow className={"withIcon"} onClick={toggleTheme}>
+        <i className={iconClassname}></i>
         <p> Dark Mode </p>
-      </Button>
+      </ButtonNoShadow>
     </Styles.HeaderContainer>
   );
 };

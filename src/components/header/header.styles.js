@@ -10,3 +10,7 @@ export const HeaderContainer = styled.div`
       : "transparent"};
   box-shadow: 0px 0px 10px -2px #000000;
 `;
+
+export const HeaderTitle = styled.h3`
+  font-size: 16px;
+`;

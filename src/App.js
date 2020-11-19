@@ -12,7 +12,7 @@ function App() {
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />
-      <Header toggleTheme={toggleTheme} />
+      <Header toggleTheme={toggleTheme} theme={theme} />
     </ThemeProvider>
   );
 }
