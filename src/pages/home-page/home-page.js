@@ -58,7 +58,7 @@ const HomePage = () => {
           />
         </Styles.Label>
 
-        <select
+        <Styles.Select
           name="region"
           id="region"
           value={region}
@@ -77,7 +77,7 @@ const HomePage = () => {
               {region}
             </option>
           ))}
-        </select>
+        </Styles.Select>
       </Styles.Form>
 
       <Styles.DetailsContainer>
