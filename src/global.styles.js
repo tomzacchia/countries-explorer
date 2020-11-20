@@ -9,6 +9,7 @@ const GlobalStyles = createGlobalStyle`
   body {
     margin: 0;
     padding: 0;
+    padding-top: 60px;
     height: 100vh;
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};

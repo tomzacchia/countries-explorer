@@ -3,6 +3,9 @@ import mediaQueries from "../../styles/breakpoints";
 
 export const HeaderContainer = styled.div`
   padding: 1rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
   display: flex;
   justify-content: space-between;
   background-color: ${({ theme }) =>
