@@ -7,7 +7,7 @@ const REGIONS = ["Africa", "America", "Asia", "Europe", "Oceania"];
 const HomePage = () => {
   var [countries, setCountries] = useState("");
   var [searchKeyword, setSearchKeyword] = useState("");
-  var [region, setRegion] = useState("all");
+  var [region, setRegion] = useState("");
   var [filteredCountries, setFilteredCountries] = useState("");
 
   // component did mount
@@ -25,25 +25,27 @@ const HomePage = () => {
 
     var filteredCountries;
 
+    if (!region && !searchKeyword) filteredCountries = countries;
+
     if (region) {
       filteredCountries = countries.filter((country) => {
         return country.region === region;
       });
-    } else {
+    } else if (searchKeyword) {
       filteredCountries = countries.filter((country) => {
         return country.name.toLowerCase().includes(searchKeyword.toLowerCase());
       });
     }
 
     setFilteredCountries(filteredCountries);
-  }, [searchKeyword, region, countries, setSearchKeyword, setRegion]);
+  }, [searchKeyword, region, countries]);
 
   return (
     <Styles.DetailsContainer>
       <Styles.Form>
-        <label htmlFor="searchKeyword">
+        <Styles.Label htmlFor="searchKeyword">
           <i className="fas fa-search"></i>
-          <input
+          <Styles.Input
             type="text"
             name="cosearchKeyworduntry"
             id="searchKeyword"
@@ -54,7 +56,7 @@ const HomePage = () => {
               setRegion("");
             }}
           />
-        </label>
+        </Styles.Label>
 
         <select
           name="region"
@@ -79,11 +81,15 @@ const HomePage = () => {
       </Styles.Form>
 
       <Styles.DetailsContainer>
-        {filteredCountries.map((country) => (
-          <div
-            key={country.name}
-          >{`${country.name} ${country.capital} ${country.population}`}</div>
-        ))}
+        {filteredCountries ? (
+          filteredCountries.map((country) => (
+            <div
+              key={country.name}
+            >{`${country.name} ${country.capital} ${country.population}`}</div>
+          ))
+        ) : (
+          <h1> Loading ... </h1>
+        )}
       </Styles.DetailsContainer>
     </Styles.DetailsContainer>
   );
