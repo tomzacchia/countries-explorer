@@ -15,9 +15,11 @@ function App() {
   return (
     <ThemeProvider theme={themeMode}>
       <GlobalStyles />
+
       <Header toggleTheme={toggleTheme} theme={theme} />
+
       <Router>
-        <HomePage path="/" />
+        <HomePage path="/" default />
         <Details path="/details/:id" />
       </Router>
     </ThemeProvider>
