@@ -6,7 +6,7 @@ import GlobalStyles from "./global.styles";
 import { lightTheme, darkTheme } from "./styles/theme";
 import { useDarkMode } from "./useDarkMode";
 import HomePage from "./pages/home-page/home-page";
-import Details from "./pages/home-page/details/details";
+import Details from "./pages/details/details";
 
 function App() {
   var [theme, toggleTheme] = useDarkMode();
