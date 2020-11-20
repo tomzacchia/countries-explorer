@@ -20,7 +20,7 @@ function App() {
 
       <Router>
         <HomePage path="/" default />
-        <Details path="/details/:id" />
+        <Details path="/details/:alphaCode" />
       </Router>
     </ThemeProvider>
   );
