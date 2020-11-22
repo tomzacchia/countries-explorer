@@ -82,17 +82,6 @@ const HomePage = () => {
       </Styles.Form>
 
       <HomepageResults countries={filteredCountries} />
-      {/* <Styles.DetailsContainer>
-        {filteredCountries ? (
-          filteredCountries.map((country) => (
-            <div
-              key={country.name}
-            >{`${country.name} ${country.capital} ${country.population}`}</div>
-          ))
-        ) : (
-          <h1> Loading ... </h1>
-        )}
-      </Styles.DetailsContainer> */}
     </Styles.DetailsContainer>
   );
 };
