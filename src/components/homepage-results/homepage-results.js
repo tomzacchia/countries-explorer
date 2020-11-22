@@ -1,40 +1,51 @@
 import React from "react";
-
-// {
-//   name: "Afghanistan",
-//   alpha3Code: "AFG",
-//   capital: "Kabul",
-//   region: "Asia",
-//   population: 27657145,
-// }
+import Proptypes from "prop-types";
+import * as Styles from "./homepage-results.styes";
 
 const HomepageResults = ({ countries }) => {
   return (
-    <div>
+    <Styles.Results>
       {countries.length === 0 ? (
         <h1>Loading...</h1>
       ) : (
         countries.map((country) => (
-          <div key={country.name}>
-            <img src={country.flag} alt={country.name} />
-            <div>
-              <h3>{country.name}</h3>
+          <Styles.CountryContainer key={country.name}>
+            <Styles.DivImgBg
+              style={{ backgroundImage: `url("${country.flag}")` }}
+            ></Styles.DivImgBg>
+
+            <Styles.InfoContainer>
+              <Styles.Title>{country.name}</Styles.Title>
 
               <p>
-                <span>Population:</span> {country.population}
+                <Styles.TextBold>Population: </Styles.TextBold>
+                {country.population
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
               </p>
               <p>
-                <span>Region:</span> {country.region}
+                <Styles.TextBold>Region: </Styles.TextBold> {country.region}
               </p>
               <p>
-                <span>Capital :</span> {country.capital}
+                <Styles.TextBold>Capital: </Styles.TextBold> {country.capital}
               </p>
-            </div>
-          </div>
+            </Styles.InfoContainer>
+          </Styles.CountryContainer>
         ))
       )}
-    </div>
+    </Styles.Results>
   );
+};
+
+HomepageResults.proptype = {
+  countries: Proptypes.arrayOf({
+    flag: Proptypes.string,
+    name: Proptypes.string,
+    alpha3Code: Proptypes.string,
+    capital: Proptypes.string,
+    region: Proptypes.string,
+    population: Proptypes.number,
+  }),
 };
 
 export default HomepageResults;
