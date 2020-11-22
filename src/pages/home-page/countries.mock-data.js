@@ -1,5 +1,6 @@
 const COUNTRIES_MOCK = [
   {
+    flag: "https://restcountries.eu/data/afg.svg",
     name: "Afghanistan",
     alpha3Code: "AFG",
     capital: "Kabul",
@@ -7,6 +8,7 @@ const COUNTRIES_MOCK = [
     population: 27657145,
   },
   {
+    flag: "https://restcountries.eu/data/ala.svg",
     name: "Åland Islands",
     alpha3Code: "ALA",
     capital: "Mariehamn",
@@ -14,6 +16,7 @@ const COUNTRIES_MOCK = [
     population: 28875,
   },
   {
+    flag: "https://restcountries.eu/data/alb.svg",
     name: "Albania",
     alpha3Code: "ALB",
     capital: "Tirana",
@@ -21,6 +24,7 @@ const COUNTRIES_MOCK = [
     population: 2886026,
   },
   {
+    flag: "https://restcountries.eu/data/dza.svg",
     name: "Algeria",
     alpha3Code: "DZA",
     capital: "Algiers",
@@ -28,6 +32,7 @@ const COUNTRIES_MOCK = [
     population: 40400000,
   },
   {
+    flag: "https://restcountries.eu/data/asm.svg",
     name: "American Samoa",
     alpha3Code: "ASM",
     capital: "Pago Pago",
@@ -35,6 +40,7 @@ const COUNTRIES_MOCK = [
     population: 57100,
   },
   {
+    flag: "https://restcountries.eu/data/and.svg",
     name: "Andorra",
     alpha3Code: "AND",
     capital: "Andorra la Vella",
@@ -42,6 +48,7 @@ const COUNTRIES_MOCK = [
     population: 78014,
   },
   {
+    flag: "https://restcountries.eu/data/ago.svg",
     name: "Angola",
     alpha3Code: "AGO",
     capital: "Luanda",
@@ -49,6 +56,7 @@ const COUNTRIES_MOCK = [
     population: 25868000,
   },
   {
+    flag: "https://restcountries.eu/data/aia.svg",
     name: "Anguilla",
     alpha3Code: "AIA",
     capital: "The Valley",
@@ -56,6 +64,7 @@ const COUNTRIES_MOCK = [
     population: 13452,
   },
   {
+    flag: "https://restcountries.eu/data/ata.svg",
     name: "Antarctica",
     alpha3Code: "ATA",
     capital: "",
@@ -63,6 +72,7 @@ const COUNTRIES_MOCK = [
     population: 1000,
   },
   {
+    flag: "https://restcountries.eu/data/atg.svg",
     name: "Antigua and Barbuda",
     alpha3Code: "ATG",
     capital: "Saint John's",
@@ -70,6 +80,7 @@ const COUNTRIES_MOCK = [
     population: 86295,
   },
   {
+    flag: "https://restcountries.eu/data/arg.svg",
     name: "Argentina",
     alpha3Code: "ARG",
     capital: "Buenos Aires",
@@ -77,6 +88,7 @@ const COUNTRIES_MOCK = [
     population: 43590400,
   },
   {
+    flag: "https://restcountries.eu/data/arm.svg",
     name: "Armenia",
     alpha3Code: "ARM",
     capital: "Yerevan",
@@ -84,6 +96,7 @@ const COUNTRIES_MOCK = [
     population: 2994400,
   },
   {
+    flag: "https://restcountries.eu/data/abw.svg",
     name: "Aruba",
     alpha3Code: "ABW",
     capital: "Oranjestad",
@@ -91,11 +104,36 @@ const COUNTRIES_MOCK = [
     population: 107394,
   },
   {
+    flag: "https://restcountries.eu/data/aus.svg",
     name: "Australia",
     alpha3Code: "AUS",
     capital: "Canberra",
     region: "Oceania",
     population: 24117360,
+  },
+  {
+    flag: "https://restcountries.eu/data/aut.svg",
+    name: "Austria",
+    alpha3Code: "AUT",
+    capital: "Vienna",
+    region: "Europe",
+    population: 8725931,
+  },
+  {
+    flag: "https://restcountries.eu/data/aze.svg",
+    name: "Azerbaijan",
+    alpha3Code: "AZE",
+    capital: "Baku",
+    region: "Asia",
+    population: 9730500,
+  },
+  {
+    flag: "https://restcountries.eu/data/bhs.svg",
+    name: "Bahamas",
+    alpha3Code: "BHS",
+    capital: "Nassau",
+    region: "Americas",
+    population: 378040,
   },
 ];
 
