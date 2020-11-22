@@ -1,6 +1,7 @@
 import React from "react";
 import Proptypes from "prop-types";
 import * as Styles from "./homepage-results.styes";
+import { navigate } from "@reach/router";
 
 const HomepageResults = ({ countries }) => {
   return (
@@ -9,7 +10,12 @@ const HomepageResults = ({ countries }) => {
         <h1>Loading...</h1>
       ) : (
         countries.map((country) => (
-          <Styles.CountryContainer key={country.name}>
+          <Styles.CountryContainer
+            key={country.name}
+            onClick={() => {
+              navigate(`/details/${country.alpha3Code}`);
+            }}
+          >
             <Styles.DivImgBg
               style={{ backgroundImage: `url("${country.flag}")` }}
             ></Styles.DivImgBg>
