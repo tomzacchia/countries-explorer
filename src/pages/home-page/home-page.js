@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import * as Styles from "./home-page.styles";
 import COUNTRIES_MOCK from "./countries.mock-data";
+import HomepageResults from "../../components/homepage-results/homepage-results";
 
 const REGIONS = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
@@ -80,7 +81,8 @@ const HomePage = () => {
         </Styles.Select>
       </Styles.Form>
 
-      <Styles.DetailsContainer>
+      <HomepageResults countries={filteredCountries} />
+      {/* <Styles.DetailsContainer>
         {filteredCountries ? (
           filteredCountries.map((country) => (
             <div
@@ -90,7 +92,7 @@ const HomePage = () => {
         ) : (
           <h1> Loading ... </h1>
         )}
-      </Styles.DetailsContainer>
+      </Styles.DetailsContainer> */}
     </Styles.DetailsContainer>
   );
 };

@@ -49,7 +49,3 @@ export const Select = styled.select`
   border: none;
   border-radius: 6px;
 `;
-
-export const CountriesContainer = styled.div`
-  display: flex;
-`;
