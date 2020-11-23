@@ -3,6 +3,7 @@ import * as Styles from "./home-page.styles";
 import API from "../../api";
 // import COUNTRIES_MOCK from "./countries.mock-data";
 import HomepageResults from "../../components/homepage-results/homepage-results";
+import ScrollToTopIcon from "../../components/scroll-to-top/scroll-to-top";
 
 const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
@@ -84,6 +85,8 @@ const HomePage = () => {
       </Styles.Form>
 
       <HomepageResults countries={filteredCountries} />
+
+      <ScrollToTopIcon iconClassName="fas fa-arrow-up" />
     </Styles.DetailsContainer>
   );
 };
