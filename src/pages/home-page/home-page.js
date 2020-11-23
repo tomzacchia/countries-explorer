@@ -14,7 +14,10 @@ const HomePage = () => {
 
   // component did mount
   useEffect(() => {
-    API.get("/all").then(({ data }) => setCountries(data), console.error);
+    API.get("/all?fields=name;capital;alpha3Code;population;flag;region").then(
+      ({ data }) => setCountries(data),
+      console.error
+    );
   }, []);
 
   // filter by search or dropdown
