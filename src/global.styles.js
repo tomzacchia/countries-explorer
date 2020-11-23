@@ -1,5 +1,6 @@
-import { createGlobalStyle } from "styled-components";
-const GlobalStyles = createGlobalStyle`
+import styled, { createGlobalStyle } from "styled-components";
+
+export const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
     margin: 0;
@@ -18,4 +19,11 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export default GlobalStyles;
+export const ToTopIcon = styled.i`
+  padding: 1rem;
+  background: ${({ theme }) => theme.elementBackgroundColor};
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  cursor: pointer;
+`;
