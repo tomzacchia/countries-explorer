@@ -8,20 +8,60 @@ const Details = ({ alphaCode }) => {
 
   useEffect(() => {
     API.get(`alpha/${alphaCode}`).then(
-      ({ data }) => setCountry(data),
+      ({ data }) => setCountry(countryDataMap(data)),
       console.error
     );
-  }, []);
+  }, [alphaCode]);
 
   return (
-    <div>
+    <Styles.Container>
       <Styles.IconContainer>
         <PreviousRouteButton message="Back" />
       </Styles.IconContainer>
 
-      <div>{!country ? <h1>Loading</h1> : <h1>{country.name}</h1>}</div>
-    </div>
+      {!country ? (
+        <h1>Loading</h1>
+      ) : (
+        <div>
+          <div> FLAG </div>
+          <div>
+            <h2> NAME </h2>
+            <div>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      )}
+    </Styles.Container>
   );
 };
+
+function countryDataMap(country) {
+  var {
+    name,
+    flag,
+    nativeName,
+    population,
+    region,
+    subregion,
+    capital,
+    topLevelDomain,
+    currencies,
+    languages,
+    borders = [],
+  } = country;
+
+  var formattedPopulation = population
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  return {
+    name,
+    flag,
+    mainInfo: [nativeName, formattedPopulation, region, subregion, capital],
+    additionalInfo: [topLevelDomain[0], currencies, languages],
+    borders,
+  };
+}
 
 export default Details;
