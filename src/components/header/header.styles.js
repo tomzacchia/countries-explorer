@@ -8,10 +8,7 @@ export const HeaderContainer = styled.div`
   top: 0;
   display: flex;
   justify-content: space-between;
-  background-color: ${({ theme }) =>
-    theme.elementBackgroundColor
-      ? theme.elementBackgroundColor
-      : "transparent"};
+  background-color: ${({ theme }) => theme.elementBackgroundColor};
   box-shadow: 0px 0px 10px -2px #000000;
 
   ${mediaQueries.md`
