@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import * as Styles from "./home-page.styles";
-import COUNTRIES_MOCK from "./countries.mock-data";
+import API from "../../api";
+// import COUNTRIES_MOCK from "./countries.mock-data";
 import HomepageResults from "../../components/homepage-results/homepage-results";
 
 const REGIONS = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
 const HomePage = () => {
+  // eslint-disable-next-line no-unused-vars
   var [countries, setCountries] = useState("");
   var [searchKeyword, setSearchKeyword] = useState("");
   var [region, setRegion] = useState("");
@@ -13,9 +15,7 @@ const HomePage = () => {
 
   // component did mount
   useEffect(() => {
-    setTimeout(() => {
-      setCountries(COUNTRIES_MOCK);
-    }, 1000);
+    API.get("/all").then(({ data }) => setCountries(data), console.error);
   }, []);
 
   // filter by search or dropdown
