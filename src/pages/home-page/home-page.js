@@ -4,10 +4,9 @@ import API from "../../api";
 // import COUNTRIES_MOCK from "./countries.mock-data";
 import HomepageResults from "../../components/homepage-results/homepage-results";
 
-const REGIONS = ["Africa", "America", "Asia", "Europe", "Oceania"];
+const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 const HomePage = () => {
-  // eslint-disable-next-line no-unused-vars
   var [countries, setCountries] = useState("");
   var [searchKeyword, setSearchKeyword] = useState("");
   var [region, setRegion] = useState("");
