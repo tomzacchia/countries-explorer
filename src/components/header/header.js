@@ -9,7 +9,7 @@ const Header = ({ toggleTheme, theme }) => {
     <Styles.HeaderContainer>
       <Styles.HeaderTitle> Where in the world? </Styles.HeaderTitle>
 
-      <ButtonNoShadow className={"withIcon"} onClick={toggleTheme}>
+      <ButtonNoShadow className="withIcon" onClick={toggleTheme}>
         <i className={iconClassname}></i>
         <p> Dark Mode </p>
       </ButtonNoShadow>
