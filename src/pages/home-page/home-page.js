@@ -13,7 +13,7 @@ const HomePage = () => {
   var [region, setRegion] = useState("");
   var [filteredCountries, setFilteredCountries] = useState("");
 
-  // component did mount
+  // fetch countries on mount
   useEffect(() => {
     API.get("all?fields=name;capital;alpha3Code;population;flag;region").then(
       ({ data }) => setCountries(data),
@@ -27,9 +27,7 @@ const HomePage = () => {
 
     setFilteredCountries("");
 
-    var filteredCountries;
-
-    if (!region && !searchKeyword) filteredCountries = countries;
+    var filteredCountries = [...countries];
 
     if (region) {
       filteredCountries = countries.filter((country) => {
@@ -44,6 +42,16 @@ const HomePage = () => {
     setFilteredCountries(filteredCountries);
   }, [searchKeyword, region, countries]);
 
+  function handleFormControlChange(value, type) {
+    if (type === "region") {
+      setSearchKeyword("");
+      setRegion(value);
+    } else {
+      setRegion("");
+      setSearchKeyword(value);
+    }
+  }
+
   return (
     <Styles.DetailsContainer>
       <Styles.Form>
@@ -56,8 +64,7 @@ const HomePage = () => {
             placeholder="Search for a country..."
             value={searchKeyword}
             onChange={(e) => {
-              setSearchKeyword(e.target.value);
-              setRegion("");
+              handleFormControlChange(e.target.value, "");
             }}
           />
         </Styles.Label>
@@ -67,12 +74,7 @@ const HomePage = () => {
           id="region"
           value={region}
           onChange={(e) => {
-            setRegion(e.target.value);
-            setSearchKeyword("");
-          }}
-          onBlur={(e) => {
-            setRegion(e.target.value);
-            setSearchKeyword("");
+            handleFormControlChange(e.target.value, "region");
           }}
         >
           <option value=""> Filter by Region </option>
@@ -84,7 +86,9 @@ const HomePage = () => {
         </Styles.Select>
       </Styles.Form>
 
-      <HomepageResults countries={filteredCountries} />
+      <HomepageResults
+        countries={filteredCountries ? filteredCountries : countries}
+      />
 
       <ScrollToTopIcon iconClassName="fas fa-arrow-up" />
     </Styles.DetailsContainer>
