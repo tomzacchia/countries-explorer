@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import * as Styles from "./home-page.styles";
-import COUNTRIES_MOCK from "./countries.mock-data";
+import API from "../../api";
+// import COUNTRIES_MOCK from "./countries.mock-data";
 import HomepageResults from "../../components/homepage-results/homepage-results";
+import ScrollToTopIcon from "../../components/scroll-to-top/scroll-to-top";
 
-const REGIONS = ["Africa", "America", "Asia", "Europe", "Oceania"];
+const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
 const HomePage = () => {
   var [countries, setCountries] = useState("");
@@ -13,9 +15,10 @@ const HomePage = () => {
 
   // component did mount
   useEffect(() => {
-    setTimeout(() => {
-      setCountries(COUNTRIES_MOCK);
-    }, 1000);
+    API.get("all?fields=name;capital;alpha3Code;population;flag;region").then(
+      ({ data }) => setCountries(data),
+      console.error
+    );
   }, []);
 
   // filter by search or dropdown
@@ -82,6 +85,8 @@ const HomePage = () => {
       </Styles.Form>
 
       <HomepageResults countries={filteredCountries} />
+
+      <ScrollToTopIcon iconClassName="fas fa-arrow-up" />
     </Styles.DetailsContainer>
   );
 };

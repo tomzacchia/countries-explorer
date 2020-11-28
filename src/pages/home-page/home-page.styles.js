@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import mediaQueries from "../../styles/breakpoints";
 
 export const DetailsContainer = styled.div`
   display: flex;
@@ -10,6 +11,11 @@ export const DetailsContainer = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+
+  ${mediaQueries.md`
+    flex-direction: row;
+    justify-content: space-between;
+  `}
 `;
 
 export const Label = styled.label`
@@ -38,6 +44,10 @@ export const Input = styled.input`
     right: 12px;
     color: ${({ theme }) => theme.text};
   }
+
+  ${mediaQueries.md`
+    width: 200px;
+  `}
 `;
 
 export const Select = styled.select`
@@ -48,4 +58,8 @@ export const Select = styled.select`
   color: ${({ theme }) => theme.text};
   border: none;
   border-radius: 6px;
+
+  ${mediaQueries.md`
+    margin-top: 0;
+  `}
 `;
