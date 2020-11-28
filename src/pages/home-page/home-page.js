@@ -4,6 +4,7 @@ import API from "../../api";
 // import COUNTRIES_MOCK from "./countries.mock-data";
 import HomepageResults from "../../components/homepage-results/homepage-results";
 import ScrollToTopIcon from "../../components/scroll-to-top/scroll-to-top";
+import useFilterCountries from "./useFilterCountries";
 
 const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
@@ -11,36 +12,14 @@ const HomePage = () => {
   var [countries, setCountries] = useState("");
   var [searchKeyword, setSearchKeyword] = useState("");
   var [region, setRegion] = useState("");
-  var [filteredCountries, setFilteredCountries] = useState("");
+  var filteredCountries = useFilterCountries(region, searchKeyword, countries);
 
-  // fetch countries on mount
   useEffect(() => {
     API.get("all?fields=name;capital;alpha3Code;population;flag;region").then(
       ({ data }) => setCountries(data),
       console.error
     );
   }, []);
-
-  // filter by search or dropdown
-  useEffect(() => {
-    if (!countries) return;
-
-    setFilteredCountries("");
-
-    var filteredCountries = [...countries];
-
-    if (region) {
-      filteredCountries = countries.filter((country) => {
-        return country.region === region;
-      });
-    } else if (searchKeyword) {
-      filteredCountries = countries.filter((country) => {
-        return country.name.toLowerCase().includes(searchKeyword.toLowerCase());
-      });
-    }
-
-    setFilteredCountries(filteredCountries);
-  }, [searchKeyword, region, countries]);
 
   function handleFormControlChange(value, type) {
     if (type === "region") {
@@ -95,4 +74,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default React.memo(HomePage);
