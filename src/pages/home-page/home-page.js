@@ -4,6 +4,7 @@ import API from "../../api";
 // import COUNTRIES_MOCK from "./countries.mock-data";
 import HomepageResults from "../../components/homepage-results/homepage-results";
 import ScrollToTopIcon from "../../components/scroll-to-top/scroll-to-top";
+import useFilterCountries from "./useFilterCountries";
 
 const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
 
@@ -11,9 +12,8 @@ const HomePage = () => {
   var [countries, setCountries] = useState("");
   var [searchKeyword, setSearchKeyword] = useState("");
   var [region, setRegion] = useState("");
-  var [filteredCountries, setFilteredCountries] = useState("");
+  var filteredCountries = useFilterCountries(region, searchKeyword, countries);
 
-  // component did mount
   useEffect(() => {
     API.get("all?fields=name;capital;alpha3Code;population;flag;region").then(
       ({ data }) => setCountries(data),
@@ -21,28 +21,15 @@ const HomePage = () => {
     );
   }, []);
 
-  // filter by search or dropdown
-  useEffect(() => {
-    if (!countries) return;
-
-    setFilteredCountries("");
-
-    var filteredCountries;
-
-    if (!region && !searchKeyword) filteredCountries = countries;
-
-    if (region) {
-      filteredCountries = countries.filter((country) => {
-        return country.region === region;
-      });
-    } else if (searchKeyword) {
-      filteredCountries = countries.filter((country) => {
-        return country.name.toLowerCase().includes(searchKeyword.toLowerCase());
-      });
+  function handleFormControlChange(value, type) {
+    if (type === "region") {
+      setSearchKeyword("");
+      setRegion(value);
+    } else {
+      setRegion("");
+      setSearchKeyword(value);
     }
-
-    setFilteredCountries(filteredCountries);
-  }, [searchKeyword, region, countries]);
+  }
 
   return (
     <Styles.DetailsContainer>
@@ -56,8 +43,7 @@ const HomePage = () => {
             placeholder="Search for a country..."
             value={searchKeyword}
             onChange={(e) => {
-              setSearchKeyword(e.target.value);
-              setRegion("");
+              handleFormControlChange(e.target.value, "");
             }}
           />
         </Styles.Label>
@@ -67,12 +53,7 @@ const HomePage = () => {
           id="region"
           value={region}
           onChange={(e) => {
-            setRegion(e.target.value);
-            setSearchKeyword("");
-          }}
-          onBlur={(e) => {
-            setRegion(e.target.value);
-            setSearchKeyword("");
+            handleFormControlChange(e.target.value, "region");
           }}
         >
           <option value=""> Filter by Region </option>
@@ -84,11 +65,13 @@ const HomePage = () => {
         </Styles.Select>
       </Styles.Form>
 
-      <HomepageResults countries={filteredCountries} />
+      <HomepageResults
+        countries={filteredCountries ? filteredCountries : countries}
+      />
 
       <ScrollToTopIcon iconClassName="fas fa-arrow-up" />
     </Styles.DetailsContainer>
   );
 };
 
-export default HomePage;
+export default React.memo(HomePage);
