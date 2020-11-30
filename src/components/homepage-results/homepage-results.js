@@ -3,13 +3,29 @@ import Proptypes from "prop-types";
 import * as Styles from "./homepage-results.styes";
 import { navigate } from "@reach/router";
 
-const HomepageResults = ({ countries }) => {
+const HomepageResults = ({ countries, region, searchKeyword }) => {
+  var filteredCountries = countries;
+
+  if (!region && !searchKeyword) {
+    filteredCountries = countries;
+  }
+
+  if (region) {
+    filteredCountries = filteredCountries.filter((country) => {
+      return country.region === region;
+    });
+  } else if (searchKeyword) {
+    filteredCountries = filteredCountries.filter((country) => {
+      return country.name.toLowerCase().includes(searchKeyword.toLowerCase());
+    });
+  }
+
   return (
     <Styles.Results>
-      {countries.length === 0 ? (
+      {filteredCountries.length === 0 ? (
         <h1>Loading...</h1>
       ) : (
-        countries.map((country) => (
+        filteredCountries.map((country) => (
           <Styles.CountryContainer
             key={country.name}
             onClick={() => {
