@@ -25,7 +25,7 @@ const Details = ({ alphaCode }) => {
         <div>
           <div> FLAG </div>
           <div>
-            <h2> NAME </h2>
+            <h2> {country.name} </h2>
             <div>
               <ul>{country.mainInfo.map(makeListItemMarkup)}</ul>
               <ul>
