@@ -28,7 +28,10 @@ const Details = ({ alphaCode }) => {
             <h2> NAME </h2>
             <div>
               <ul>{country.mainInfo.map(makeListItemMarkup)}</ul>
-              {/* <ul>{country.additionalInfo.map(makeListItemMarkup)}</ul> */}
+              <ul>
+                {country.additionalInfo.map(makeAdditionalInfoListItemMarkup)}
+              </ul>
+              <ul></ul>
             </div>
           </div>
         </div>
@@ -39,12 +42,36 @@ const Details = ({ alphaCode }) => {
 
 export default Details;
 
-//** information: {label: string, value: string | array} */
+// info: {label: string, type: string, value: string | array}
+function makeAdditionalInfoListItemMarkup(infoObj) {
+  var type = infoObj.type;
+
+  if (type === "domain") {
+    return makeListItemMarkup(infoObj);
+  } else {
+    return makeAdjacentWordsMarkup(infoObj);
+  }
+}
+
+//** info: {label: string, value: string | array<{name}>} */
 function makeListItemMarkup(info) {
   return (
     <li key={info.label}>
-      <span key={info.label}>{capitalizeSpaceSeparatedWords(info.label)}:</span>{" "}
+      <span>{capitalizeSpaceSeparatedWords(info.label)}: </span>
       {info.value}
+    </li>
+  );
+}
+
+//** currencies | languages: {label: string, type: string, value: array} */
+function makeAdjacentWordsMarkup(infoObj) {
+  var length = infoObj.values.length - 1;
+  return (
+    <li key={infoObj.label}>
+      <span>{capitalizeSpaceSeparatedWords(infoObj.label)}:</span>
+      {infoObj.values.map((language, index) => {
+        return language.name + (index !== length ? ", " : "");
+      })}
     </li>
   );
 }
@@ -79,9 +106,9 @@ function countryDataMap(country) {
       { label: "capital", value: capital },
     ],
     additionalInfo: [
-      { label: "top level domain", value: topLevelDomain[0] },
-      { label: "currencies", value: currencies },
-      { label: "language", value: languages },
+      { label: "top level domain", type: "domain", value: topLevelDomain[0] },
+      { label: "currencies", type: "currencies", values: currencies },
+      { label: "language", type: "language", values: languages },
     ],
     borders,
   };
