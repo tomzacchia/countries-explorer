@@ -27,7 +27,8 @@ const Details = ({ alphaCode }) => {
           <div>
             <h2> NAME </h2>
             <div>
-              <div></div>
+              <ul>{country.mainInfo.map(makeListItemMarkup)}</ul>
+              {/* <ul>{country.additionalInfo.map(makeListItemMarkup)}</ul> */}
             </div>
           </div>
         </div>
@@ -35,6 +36,18 @@ const Details = ({ alphaCode }) => {
     </Styles.Container>
   );
 };
+
+export default Details;
+
+//** information: {label: string, value: string | array} */
+function makeListItemMarkup(info) {
+  return (
+    <li key={info.label}>
+      <span key={info.label}>{capitalizeSpaceSeparatedWords(info.label)}:</span>{" "}
+      {info.value}
+    </li>
+  );
+}
 
 function countryDataMap(country) {
   var {
@@ -58,10 +71,26 @@ function countryDataMap(country) {
   return {
     name,
     flag,
-    mainInfo: [nativeName, formattedPopulation, region, subregion, capital],
-    additionalInfo: [topLevelDomain[0], currencies, languages],
+    mainInfo: [
+      { label: "native name", value: nativeName },
+      { label: "population", value: formattedPopulation },
+      { label: "region", value: region },
+      { label: "sub region", value: subregion },
+      { label: "capital", value: capital },
+    ],
+    additionalInfo: [
+      { label: "top level domain", value: topLevelDomain[0] },
+      { label: "currencies", value: currencies },
+      { label: "language", value: languages },
+    ],
     borders,
   };
 }
 
-export default Details;
+function capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function capitalizeSpaceSeparatedWords(str) {
+  return str.split(" ").map(capitalize).join(" ");
+}
