@@ -68,7 +68,7 @@ function makeAdjacentWordsMarkup(infoObj) {
   var length = infoObj.values.length - 1;
   return (
     <li key={infoObj.label}>
-      <span>{capitalizeSpaceSeparatedWords(infoObj.label)}:</span>
+      <span>{capitalizeSpaceSeparatedWords(infoObj.label)}: </span>
       {infoObj.values.map((language, index) => {
         return language.name + (index !== length ? ", " : "");
       })}
