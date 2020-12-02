@@ -2,13 +2,17 @@ import React from "react";
 import { navigate } from "@reach/router";
 import { Button } from "../../styles/buttons";
 
-function PreviousRouteButton({ message }) {
+function ButtonWithNavigation({ message, routeURL, hasIcon, iconClassName }) {
+  function handleClick() {
+    navigate(routeURL);
+  }
+
   return (
-    <Button className="withIcon" onClick={() => navigate(-1)}>
-      <i className="fas fa-arrow-left"></i>
+    <Button className="withIcon" onClick={handleClick}>
+      {hasIcon && <i className={iconClassName}></i>}
       <p> {message} </p>
     </Button>
   );
 }
 
-export default PreviousRouteButton;
+export default ButtonWithNavigation;

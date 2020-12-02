@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api";
-import PreviousRouteButton from "../../components/previous-route-button/previous-route-button";
+import ButtonWithNavigation from "../../components/previous-route-button/previous-route-button";
 import * as Styles from "./details.styles";
 
 const Details = ({ alphaCode }) => {
@@ -16,7 +16,12 @@ const Details = ({ alphaCode }) => {
   return (
     <Styles.Container>
       <Styles.IconContainer>
-        <PreviousRouteButton message="Back" />
+        <ButtonWithNavigation
+          message="Back"
+          routeURL="/"
+          hasIcon
+          iconClassName="fas fa-arrow-left"
+        />
       </Styles.IconContainer>
 
       {!country ? (
@@ -42,6 +47,7 @@ const Details = ({ alphaCode }) => {
                 <span>
                   {capitalizeSpaceSeparatedWords("border countries: ")}
                 </span>
+                {country.borders.map(makeBorderCardMarkup)}
               </p>
             </div>
           </div>
@@ -78,6 +84,11 @@ function makeAdditionalInfoListItemMarkup(infoObj) {
       </p>
     </li>
   );
+}
+
+//** countryName: string */
+function makeBorderCardMarkup(countryName) {
+  return <span>{countryName}</span>;
 }
 
 function countryDataMap(country) {
