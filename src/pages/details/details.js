@@ -23,15 +23,26 @@ const Details = ({ alphaCode }) => {
         <h1>Loading</h1>
       ) : (
         <div>
+          {/* section 1: flag */}
           <div> FLAG </div>
+          {/* section 2: information and borders */}
           <div>
             <h2> {country.name} </h2>
+            {/* name, region, currencies etc... */}
             <div>
               <ul>{country.mainInfo.map(makeListItemMarkup)}</ul>
               <ul>
                 {country.additionalInfo.map(makeAdditionalInfoListItemMarkup)}
               </ul>
               <ul></ul>
+            </div>
+            {/* border country links */}
+            <div>
+              <p>
+                <span>
+                  {capitalizeSpaceSeparatedWords("border countries: ")}
+                </span>
+              </p>
             </div>
           </div>
         </div>
@@ -46,8 +57,10 @@ export default Details;
 function makeListItemMarkup(info) {
   return (
     <li key={info.label}>
-      <span>{capitalizeSpaceSeparatedWords(info.label)}: </span>
-      {info.value}
+      <p>
+        <span>{capitalizeSpaceSeparatedWords(info.label)}: </span>
+        {info.value}
+      </p>
     </li>
   );
 }
@@ -57,10 +70,12 @@ function makeAdditionalInfoListItemMarkup(infoObj) {
   var length = infoObj.values.length - 1;
   return (
     <li key={infoObj.label}>
-      <span>{capitalizeSpaceSeparatedWords(infoObj.label)}: </span>
-      {infoObj.values.map((value, index) => {
-        return value + (index !== length ? ", " : "");
-      })}
+      <p>
+        <span>{capitalizeSpaceSeparatedWords(infoObj.label)}: </span>
+        {infoObj.values.map((value, index) => {
+          return value + (index !== length ? ", " : "");
+        })}
+      </p>
     </li>
   );
 }
