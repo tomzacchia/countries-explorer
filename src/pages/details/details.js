@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api";
-import ButtonWithNavigation from "../../components/previous-route-button/previous-route-button";
+import ButtonWithNavigation from "../../components/button-with-navigation/button-with-navigation";
 import * as Styles from "./details.styles";
 
 const Details = ({ alphaCode }) => {
@@ -14,46 +14,47 @@ const Details = ({ alphaCode }) => {
   }, [alphaCode]);
 
   return (
-    <Styles.Container>
+    <Styles.PageContainer>
       <Styles.IconContainer>
         <ButtonWithNavigation
-          message="Back"
           routeURL="/"
           hasIcon
           iconClassName="fas fa-arrow-left"
-        />
+        >
+          back
+        </ButtonWithNavigation>
       </Styles.IconContainer>
 
       {!country ? (
-        <h1>Loading</h1>
+        <Styles.LoadingMessage>Loading</Styles.LoadingMessage>
       ) : (
-        <div>
-          {/* section 1: flag */}
-          <div> FLAG </div>
-          {/* section 2: information and borders */}
-          <div>
-            <h2> {country.name} </h2>
-            {/* name, region, currencies etc... */}
-            <div>
+        <Styles.DetailsContainer>
+          <Styles.FlagImgContainer
+            style={{ backgroundImage: `url(${country.flag})` }}
+          ></Styles.FlagImgContainer>
+
+          <Styles.InfoContainer>
+            <Styles.Title> {country.name} </Styles.Title>
+
+            <Styles.UnorderedListsContainer>
               <ul>{country.mainInfo.map(makeListItemMarkup)}</ul>
               <ul>
                 {country.additionalInfo.map(makeAdditionalInfoListItemMarkup)}
               </ul>
-              <ul></ul>
-            </div>
-            {/* border country links */}
-            <div>
+            </Styles.UnorderedListsContainer>
+
+            <Styles.BorderCountriesCardsContainer>
               <p>
                 <span>
                   {capitalizeSpaceSeparatedWords("border countries: ")}
                 </span>
-                {country.borders.map(makeBorderCardMarkup)}
               </p>
-            </div>
-          </div>
-        </div>
+              {country.borders.map(makeBorderCardMarkup)}
+            </Styles.BorderCountriesCardsContainer>
+          </Styles.InfoContainer>
+        </Styles.DetailsContainer>
       )}
-    </Styles.Container>
+    </Styles.PageContainer>
   );
 };
 
@@ -87,8 +88,12 @@ function makeAdditionalInfoListItemMarkup(infoObj) {
 }
 
 //** countryName: string */
-function makeBorderCardMarkup(countryName) {
-  return <span>{countryName}</span>;
+function makeBorderCardMarkup(alpha3Cpde) {
+  return (
+    <ButtonWithNavigation routeURL={`/details/${alpha3Cpde}`} key={alpha3Cpde}>
+      {alpha3Cpde}
+    </ButtonWithNavigation>
+  );
 }
 
 function countryDataMap(country) {
