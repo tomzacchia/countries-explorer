@@ -42,17 +42,6 @@ const Details = ({ alphaCode }) => {
 
 export default Details;
 
-// info: {label: string, type: string, value: string | array}
-function makeAdditionalInfoListItemMarkup(infoObj) {
-  var type = infoObj.type;
-
-  if (type === "domain") {
-    return makeListItemMarkup(infoObj);
-  } else {
-    return makeAdjacentWordsMarkup(infoObj);
-  }
-}
-
 //** info: {label: string, value: string | array<{name}>} */
 function makeListItemMarkup(info) {
   return (
@@ -63,14 +52,14 @@ function makeListItemMarkup(info) {
   );
 }
 
-//** currencies | languages: {label: string, type: string, value: array} */
-function makeAdjacentWordsMarkup(infoObj) {
+//** infoObj: {label: string, type: string, value: array[strings]} */
+function makeAdditionalInfoListItemMarkup(infoObj) {
   var length = infoObj.values.length - 1;
   return (
     <li key={infoObj.label}>
       <span>{capitalizeSpaceSeparatedWords(infoObj.label)}: </span>
-      {infoObj.values.map((language, index) => {
-        return language.name + (index !== length ? ", " : "");
+      {infoObj.values.map((value, index) => {
+        return value + (index !== length ? ", " : "");
       })}
     </li>
   );
@@ -95,6 +84,9 @@ function countryDataMap(country) {
     .toString()
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
+  var extractedCurrencyNames = currencies.map(extractNameValueFromObj);
+  var extractedLanguageNames = languages.map(extractNameValueFromObj);
+
   return {
     name,
     flag,
@@ -106,12 +98,22 @@ function countryDataMap(country) {
       { label: "capital", value: capital },
     ],
     additionalInfo: [
-      { label: "top level domain", type: "domain", value: topLevelDomain[0] },
-      { label: "currencies", type: "currencies", values: currencies },
-      { label: "language", type: "language", values: languages },
+      {
+        label: "top level domain",
+        values: [topLevelDomain[0]],
+      },
+      {
+        label: "currencies",
+        values: extractedCurrencyNames,
+      },
+      { label: "language", values: extractedLanguageNames },
     ],
     borders,
   };
+}
+
+function extractNameValueFromObj(obj) {
+  return obj.name;
 }
 
 function capitalize(str) {
