@@ -2,7 +2,7 @@ import React from "react";
 import { navigate } from "@reach/router";
 import { Button } from "../../styles/buttons";
 
-function ButtonWithNavigation({ message, routeURL, hasIcon, iconClassName }) {
+function ButtonWithNavigation({ children, routeURL, hasIcon, iconClassName }) {
   function handleClick() {
     navigate(routeURL);
   }
@@ -10,7 +10,7 @@ function ButtonWithNavigation({ message, routeURL, hasIcon, iconClassName }) {
   return (
     <Button className="withIcon" onClick={handleClick}>
       {hasIcon && <i className={iconClassName}></i>}
-      <p> {message} </p>
+      <p style={{ width: "100%", textAlign: "center" }}> {children} </p>
     </Button>
   );
 }
