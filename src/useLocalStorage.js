@@ -6,7 +6,7 @@ function useLocalStorage(key, initialValue) {
     try {
       const item = window.localStorage.getItem(key);
 
-      return item ? item : initialValue;
+      return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       //** Catch errors such as no acces, storage is full, etc... */
       return initialValue;
