@@ -62,9 +62,14 @@ export const FlagImgContainer = styled.div`
 
 export const UnorderedListsContainer = styled.div`
   display: flex;
+  flex-direction: column;
 
   ul {
     list-style: none;
+  }
+
+  ul li {
+    margin: 0.5rem 0;
   }
 
   ul span {
@@ -72,8 +77,17 @@ export const UnorderedListsContainer = styled.div`
   }
 
   ul:nth-child(2) {
-    margin-left: 2rem;
+    margin-top: 2rem;
   }
+
+  ${mediaQueries.md`
+    flex-direction: row;
+
+    ul:nth-child(2) {
+      margin-top: 0rem;
+      margin-left: 2rem;
+    }
+  `}
 `;
 
 export const BorderCountriesCardsContainer = styled.div`
