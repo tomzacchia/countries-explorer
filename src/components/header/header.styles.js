@@ -19,4 +19,5 @@ export const HeaderContainer = styled.div`
 
 export const HeaderTitle = styled.h3`
   font-size: 16px;
+  cursor: pointer;
 `;
