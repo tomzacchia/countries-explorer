@@ -20,7 +20,6 @@ function useLocalStorage(key, initialValue) {
       window.localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
       //** TODO: more advanced error handling */
-      console.log(error);
     }
   }
 

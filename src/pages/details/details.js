@@ -7,9 +7,8 @@ const Details = ({ alphaCode }) => {
   var [country, setCountry] = useState("");
 
   useEffect(() => {
-    API.get(`alpha/${alphaCode}`).then(
-      ({ data }) => setCountry(countryDataMap(data)),
-      console.error
+    API.get(`alpha/${alphaCode}`).then(({ data }) =>
+      setCountry(countryDataMap(data))
     );
   }, [alphaCode]);
 

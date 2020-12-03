@@ -13,10 +13,9 @@ const HomePage = () => {
   var [region, setRegion] = useState("");
 
   useEffect(() => {
-    API.get("all?fields=name;capital;alpha3Code;population;flag;region").then(
-      ({ data }) => setCountries(data),
-      console.error
-    );
+    API.get(
+      "all?fields=name;capital;alpha3Code;population;flag;region"
+    ).then(({ data }) => setCountries(data));
   }, []);
 
   function handleFormControlChange(value, type) {
