@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import mediaQueries from "../../styles/breakpoints";
 
 export const PageContainer = styled.div`
   padding: 50px;
@@ -7,7 +8,7 @@ export const PageContainer = styled.div`
 
 export const IconContainer = styled.div`
   width: max-content;
-  position: fixed;
+  position: absolute;
   top: 125px;
   left: 50px;
 `;
@@ -23,6 +24,11 @@ export const LoadingMessage = styled.h1`
 export const DetailsContainer = styled.div`
   margin-top: 6rem;
   display: flex;
+  flex-direction: column;
+
+  ${mediaQueries.lg`
+    flex-direction: row;
+  `}
 `;
 
 export const Title = styled.h2`
@@ -30,18 +36,28 @@ export const Title = styled.h2`
 `;
 
 export const InfoContainer = styled.div`
-  margin-left: 4rem;
+  margin-top: 2rem;
 
   span {
     font-weight: bold;
   }
+
+  ${mediaQueries.lg`
+    margin-top: 0;
+    margin-left: 4rem;
+  `}
 `;
 
 export const FlagImgContainer = styled.div`
-  height: 300px;
-  width: 400px;
+  width: 100%;
+  height: 200px;
   background-size: cover;
   background-position: center;
+
+  ${mediaQueries.lg`
+  height: 300px;
+  width: 400px;
+  `}
 `;
 
 export const UnorderedListsContainer = styled.div`
@@ -63,9 +79,16 @@ export const UnorderedListsContainer = styled.div`
 export const BorderCountriesCardsContainer = styled.div`
   margin-top: 4rem;
   display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+
+  p {
+    width: 150px;
+  }
 
   button {
-    margin: 0 0.5rem;
+    margin: 0.5rem 1rem 0.5rem 0;
     width: 75px;
   }
 `;
