@@ -6,7 +6,7 @@ export const Button = styled.button`
   display: flex;
   background-color: transparent;
   color: ${({ theme }) => theme.text};
-  box-shadow: 0px 0px 3px 3px #00000078;
+  box-shadow: 0px 0px 3px 1px #00000078;
 
   &:focus {
     outline: none;
